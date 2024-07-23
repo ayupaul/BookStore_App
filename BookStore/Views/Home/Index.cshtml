@@ -1,0 +1,131 @@
+﻿
+@using Microsoft.AspNetCore.Identity
+@using DataAccessLayer.Models 
+@model List<CreateBookViewModel>
+
+@inject SignInManager<IdentityUser> signInManager
+
+@{ ViewBag.Title = "View Book Reading Event"; }
+
+
+
+
+
+<div class="container">
+
+    @if (signInManager.IsSignedIn(User))
+
+    {
+
+        <div class="row">
+
+            <div class="left col-md-6 d-flex flex-column">
+
+                <h1>Past Event</h1>
+
+
+
+                @foreach (var book in Model)
+
+                {
+
+                    if (book.Date < DateTime.Now)
+
+                    {
+
+                        
+
+                            <a href="@Url.Action("ViewBook", "Book", new { id = book.Id })">@book.Title</a><br />
+
+                       
+                                            }
+
+                                        }
+
+
+
+            </div>
+
+            <div class="col-md-6 d-flex flex-column">
+
+                <h1>Upcoming Event</h1>
+
+                @foreach (var book in Model)
+
+                {
+
+                    if (book.Date > DateTime.Now)
+
+                    {
+
+                        <a href="@Url.Action("ViewBook", "Book", new { id = book.Id }) ">@book.Title</a><br />
+                                            }
+
+                                        }
+
+            </div>
+
+        </div>
+                    }
+
+                    else
+                    {
+
+                        <div class="row">
+
+                            <div class="left col-md-6 d-flex flex-column">
+
+                                <h1>Past Event</h1>
+
+
+
+                                @foreach (var book in Model)
+
+                                {
+
+                                    if (book.Date < DateTime.Now && book.EventType == "Public")
+
+                                    {
+
+                                        
+
+                                            <a href="@Url.Action("ViewBook", "Book", new { id = book.Id })">@book.Title</a><br />
+
+                                        
+                                                            }
+
+                                                        }
+
+
+
+                            </div>
+
+                            <div class="col-md-6 d-flex flex-column">
+
+                                <h1>Upcoming Event</h1>
+
+                                @foreach (var book in Model)
+
+                                {
+
+                                    if (book.Date > DateTime.Now && book.EventType == "Public")
+
+                                    {
+
+                                        <a href="@Url.Action("ViewBook", "Book", new { id = book.Id }) ">@book.Title</a><br />
+                                                            }
+
+                                                        }
+
+                            </div>
+
+                        </div>
+                                    }
+
+</div>
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+﻿@model CommentViewModel
+<h5>Comments:</h5>
+<form asp-action="AddComment" asp-controller="Comment" method="post">
+    <input type="hidden" asp-for="@Model.BookView.Id" />
+    <label asp-for="@Model.CommentText"></label>
+    <textarea asp-for="@Model.CommentText"></textarea>
+    
+    <button type="submit">Add Comment</button>
+</form>

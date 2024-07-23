@@ -1,0 +1,23 @@
+﻿@model IEnumerable<CreateBookViewModel>
+
+<h2>All Event</h2>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ev in Model)
+        {
+            <tr>
+                <td><a href="@Url.Action("ViewBook", "Book", new { id = ev.Id })">@ev.Title</a></td>
+            <td>
+            <a asp-action="Edit" asp-controller="Book" asp-route-id="@ev.Id">Edit</a>
+            </td>
+            </tr>
+         }
+    </tbody>
+</table>

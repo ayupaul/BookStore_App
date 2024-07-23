@@ -1,0 +1,17 @@
+﻿@model ViewBookViewModel
+<h3>View Book Details</h3>
+<p>Title: @Model.Book.Title</p>
+<p>Date: @Model.Book.Date.ToShortDateString()</p>
+<p>Location: @Model.Book.Location</p>
+<p>Start Time: @Model.Book.StartTime</p>
+<p>Event Type: @Model.Book.EventType</p>
+<p>Duration In Hours: @Model.Book.DurationInHours</p>
+<p>Description: @Model.Book.Description</p>
+<p>Invite By Email: @Model.Book.InviteByEmail</p>
+<a asp-action="AddComment" asp-controller="Comment" >Add Comment</a>
+<p>Past Comments:</p>
+@foreach (var comment in Model.CommentList)
+{
+<p>@comment.CommentText</p>
+@*<p>By: @comment.User.UserName</p>*@
+}

@@ -1,0 +1,58 @@
+﻿@using System.Security.Claims
+@model List<CreateBookViewModel>
+
+<h2>My Events</h2>
+
+@if (Model.Count == 0)
+
+{
+
+<p>You have not created any events yet.</p> }
+
+else
+
+{
+
+<table>
+
+    <thead>
+
+        <tr>
+            <th>Title</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var e in Model)
+
+
+
+        {
+
+
+
+<tr>
+
+
+
+    <td><a href="@Url.Action("ViewBook", "Book", new { id = e.Id })">@e.Title</a></td>
+    <td>
+        @if (e.BookId == User.FindFirstValue(ClaimTypes.NameIdentifier))
+        {
+<div>
+    <a asp-action="Edit" asp-route-id="@e.Id">Edit</a>
+</div>}
+    </td>
+</tr>}
+    </tbody>
+
+
+
+</table>}
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
